@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+    	<typeAlias alias="goodsDTO" type="co.kr.teamb.dto.GoodsDTO"/>
+    	<typeAlias alias="userDTO" type="co.kr.teamb.dto.UserDTO"/>
+    	<typeAlias alias="cartDTO" type="co.kr.teamb.dto.CartDTO"/>
+  	</typeAliases>
+	<mappers>
+		<mapper resource="/mybatis/customer.xml"/>
+		<mapper resource="/mybatis/reply.xml"/>
+		<mapper resource="/mybatis/notice.xml"/>
+		<mapper resource="/mybatis/goods.xml"/>
+		<mapper resource="/mybatis/user.xml"/>
+		<mapper resource="/mybatis/orderlist.xml"/>
+		<mapper resource="/mybatis/review.xml"/>
+		<mapper resource="/mybatis/user.xml"/>
+		<mapper resource="/mybatis/cart.xml"/>
+		<mapper resource="/mybatis/faq.xml"/>
+	</mappers>
+</configuration>

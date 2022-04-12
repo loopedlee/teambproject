@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="customer">
+	<select id="selectAll" resultType="co.kr.teamb.dto.CustomerDTO">
+		select * from customer order by id desc
+	</select>
+	
+	<select id="selectOne" resultType="co.kr.teamb.dto.CustomerDTO">
+		select * from customer where id = #{id}
+	</select>
+	
+	<update id="readcountCustomer" parameterType="int">
+		update customer set readcount = readcount + 1 where id = #{id}
+	</update>
+	
+	<insert id="insertCustomer" parameterType="co.kr.teamb.dto.CustomerDTO" useGeneratedKeys="true" keyProperty="id"> 
+        INSERT INTO customer (subject, writer, content, regdate) VALUES (#{subject}, #{writer}, #{content}, CURRENT_TIMESTAMP) 
+    </insert>
+    
+    <update id="updateCustomer" parameterType="co.kr.teamb.dto.CustomerDTO">
+    	update customer set content = #{content}, subject = #{subject} where id = #{id}
+    </update>
+    
+    <delete id="deleteCustomer" parameterType="int">
+    	delete from customer where id = #{id}
+    </delete>
+    
+    <select id="getCount" resultType="int">
+    	select count(*) from customer
+    </select>
+    
+    <select id="searchCount" resultType="int">
+    	select count(*) from customer where subject like CONCAT('%',#{keyword},'%')
+    </select>
+    
+    <select id="pagIng" parameterType="int" resultType="co.kr.teamb.dto.CustomerDTO">
+    	select * from customer where id > 0 order by id desc, regdate desc limit #{start}, #{cnt}
+    </select>
+    
+    <select id="searchKeyword" parameterType="map" resultType="co.kr.teamb.dto.CustomerDTO">
+    	select * from customer where subject like CONCAT('%',#{keyword},'%') order by id desc, regdate desc limit #{start}, #{cnt}
+    </select>
+    
+</mapper>

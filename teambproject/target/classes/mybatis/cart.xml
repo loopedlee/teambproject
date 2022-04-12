@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+
+  <select id="selectUser" resultType="userDTO">
+    select * from user
+    where id=#{uid}
+  </select>
+  
+  <select id="selectCart" resultType="cartDTO">
+    select * from cart
+    where id=#{uid}
+  </select>
+
+  <select id="goodsList" resultType="int">
+    select stock from goods
+    where id=#{gid}
+  </select>
+  
+  <insert id="insertCart" parameterType="cartDTO">
+    insert into cart(id,uid,gid,date,stock)
+    values(0,#{uid},#{gid},NOW(),#{stock})
+  </insert>
+  
+  <select id="cartList" resultType="cartDto" parameterType="java.util.Map">
+    select cc.uid, gg.id, cc.gid, cc.date, gg.name, gg.img, gg.price, cc.stock  
+    from cart cc, goods gg
+	where cc.gid=gg.id and cc.uid=#{uid}
+  </select>
+  
+  <update id="cartUpdate" parameterType="cartDTO">
+    update cart set stock=#{stock}
+    where gid=#{gid} and uid=#{uid}
+  </update>
+  
+  <delete id="cartDelete" parameterType="cartDTO">
+    delete from cart
+    where gid=#{gid} and uid=#{uid}
+  </delete>
+  
+  <insert id="insertOrder" parameterType="co.kr.teamb.dto.OrderlistDTO">
+    insert into orderlist 
+    values(0,#{gid},#{uid},#{name},#{tel},#{zipcode},#{address},#{img},#{stock},#{price},0,NOW())
+  </insert>
+
+</mapper>

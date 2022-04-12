@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+	<insert id="addReply" parameterType="map" useGeneratedKeys="true" keyProperty="rid">
+    	insert into reply (cid, writer, content, regdate) values(#{cid}, #{writer}, #{content}, CURRENT_TIMESTAMP)
+    </insert>
+    
+    <select id="viewReply" parameterType="int" resultType="co.kr.teamb.dto.ReplyDTO">
+    	select * from reply where cid = #{cid}
+    </select>
+    
+    <update id="addComment">
+    	update customer set comment = comment + 1 where id = #{cid}
+    </update>
+    
+    <delete id="delReply" parameterType="int">
+    	delete from reply where rid = #{rid}
+    </delete>
+    
+    <update id="removeComment">
+    	update customer set comment = comment - 1 where id = #{cid}
+    </update>
+    
+    <update id="updateReply" parameterType="map">
+    	update reply set content = #{content} where rid = #{rid}
+    </update>
+</mapper>

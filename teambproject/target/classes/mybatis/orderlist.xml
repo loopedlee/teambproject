@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orderlist">
+
+	<select id="baseAll" parameterType="String" resultType="co.kr.teamb.dto.OrderlistDTO">
+		select * from orderlist where uid = #{uid} order by orderdate desc;
+	</select>
+	
+	<select id="adminAll" resultType="co.kr.teamb.dto.OrderlistDTO">
+		select * from orderlist order by orderdate desc;
+	</select>
+	
+	<update id="updateState" parameterType="map">
+		update orderlist set state = #{state} where id = #{id}
+	</update>
+</mapper>
