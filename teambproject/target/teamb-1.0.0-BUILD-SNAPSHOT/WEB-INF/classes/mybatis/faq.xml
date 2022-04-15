@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="faq">
+  <insert id="insertFAQ" parameterType="co.kr.teamb.dto.FaqDTO">
+   insert into faq(id, writer, subject, content, regdate) values(0, #{subject}, #{writer}, #{content}, NOW())
+  </insert>
+  
+  <!-- 리스트 -->
+  <select id="selectAll" resultType="co.kr.teamb.dto.FaqDTO">
+    select * from faq
+  </select>
+  
+  <!-- 글내용보기 -->
+  <select id="selectOne" parameterType="int" resultType="co.kr.teamb.dto.FaqDTO">
+    select * from faq where id=#{id}
+  </select>
+  
+  <!-- 글수정 폼 -->
+  <select id="RewriteFaq" parameterType="int" resultType="co.kr.teamb.dto.FaqDTO">
+    select * from faq where id=#{id}
+  </select>
+  
+  <!-- DB글수정 -->
+  <update id="faqUpdate" parameterType="co.kr.teamb.dto.FaqDTO">
+    update faq
+     set writer=#{writer},
+     subject=#{subject},
+     content=#{content}
+    where id=#{id} 
+  </update>
+  
+  
+  <!-- 글삭제 -->
+  <delete id="faqDelete" parameterType="int">
+    delete from faq where id=#{id}
+  </delete>
+  
+</mapper>

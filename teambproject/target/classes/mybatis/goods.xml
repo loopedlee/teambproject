@@ -53,4 +53,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     where id=#{id}
   </delete>
   
+  <select id="selectRate" resultType="GoodsDTO">
+  	SELECT * FROM goods WHERE rate > 0 ORDER BY rate DESC LIMIT 0,5;
+  </select>
+  
+  <select id="selectReadCount" resultType="GoodsDTO">
+  	SELECT * FROM goods WHERE readcount > 0 ORDER BY readcount DESC LIMIT 0,5;
+  </select>
+  
+  <select id="selectSales" resultType="GoodsDTO">
+  	SELECT * FROM goods WHERE sales > 0 ORDER BY sales DESC LIMIT 0,5;
+  </select>
+  
 </mapper>

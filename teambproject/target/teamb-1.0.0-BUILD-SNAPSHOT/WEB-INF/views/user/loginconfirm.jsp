@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-안녕?
+<p>${sessionScope.id}님 환영합니다.</p>
+<p>로그인성공</p>
 </body>
 </html>

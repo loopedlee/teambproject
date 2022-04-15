@@ -139,9 +139,6 @@ function idCheck(){
   h2{
   text-align: center;
   }
-  table{
-  margin: auto;
-  }
   </style>
 </head>
 <body>
@@ -159,12 +156,12 @@ function idCheck(){
 			<br>
 			<div class="input-group flex-nowrap">
   				<span class="input-group-text" id="addon-wrapping">암호</span>
-  					<input type="text" class="form-control" placeholder="암호를 입력해주세요" aria-label="Username" aria-describedby="addon-wrapping" name="pw" id="pw">
+  					<input type="password" class="form-control" placeholder="암호를 입력해주세요" aria-label="Username" aria-describedby="addon-wrapping" name="pw" id="pw">
 			</div>
 			<br>
 			<div class="input-group flex-nowrap">
   				<span class="input-group-text" id="addon-wrapping">암호확인</span>
-  					<input type="text" class="form-control" placeholder="암호를 한번 더 입력해주세요" aria-label="Username" aria-describedby="addon-wrapping" name="pwcheck" id="pwcheck">
+  					<input type="password" class="form-control" placeholder="암호를 한번 더 입력해주세요" aria-label="Username" aria-describedby="addon-wrapping" name="pwcheck" id="pwcheck">
 			</div>
 			<br>
 			<div class="input-group flex-nowrap">

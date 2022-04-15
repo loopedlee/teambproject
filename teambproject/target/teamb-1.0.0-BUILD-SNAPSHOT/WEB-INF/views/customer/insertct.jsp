@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/constants.jsp"%>
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -29,7 +30,7 @@
 			};
 			
 			$.ajax({
-				url:"/teamb/insertconfirm.do",
+				url:"${ctxpath}/customer/insertconfirm.do",
 				type:"POST",
 				data:json
 			}).done(function(data, textStatus, jqXHR){	
@@ -37,7 +38,7 @@
 				console.log(textStatus);
 				console.log(jqXHR);
 				alert("등록에 성공했습니다.");
-				location.href = "/teamb/customer.do";
+				location.href = "${ctxpath}/customer/customer.do";
 					
 			}).fail(function(jqXHR, textStatus, errorThrown){
 				console.log(jqXHR);

@@ -30,11 +30,11 @@
   <table class="line2">
     <tr>
       <td align="right">
-        <%--  <c:if test="${adminID != null}">--%>
+        <c:if test="${sessionScope.grade eq 1}">
           <a href="${ctxpath}/notice/editForm.do?id=${id}&pageNum=${pageNum}">글수정하기🖋</a>&nbsp;
           <a href="${ctxpath}/notice/delete.do?id=${id}&pageNum=${pageNum}">글삭제하기✂</a>&nbsp;
           <a href="${ctxpath}/notice/insertForm.do">글쓰기✒</a>&nbsp;
-    <%--   </c:if>--%>
+     	</c:if>
       
           <a href="${ctxpath}/notice/list.do?pageNum=${pageNum}">목록가기🌈</a>
       </td>

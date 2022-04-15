@@ -43,7 +43,7 @@ public class FaqController {
  					List<HashMap<String, String>> list 
  					= sqlSession.selectList("faq.selectAll");
  					
- 					ModelAndView mv = new ModelAndView("/faq/list", "list", list);
+ 					ModelAndView mv = new ModelAndView(".teamb.faq.list", "list", list);
  					
  					return mv; //뷰 리턴
  				}

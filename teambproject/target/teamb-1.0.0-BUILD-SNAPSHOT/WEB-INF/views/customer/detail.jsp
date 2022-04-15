@@ -17,27 +17,28 @@
 			var json = {
 				"id" : $("#deleteid").val()
 			};
+			
+			$.ajax({
+				url:"${ctxpath}/customer/deletect.do",
+				type:"POST",
+				data:json
+			}).done(function(data, textStatus, jqXHR){	
+				console.log(data);
+				console.log(textStatus);
+				console.log(jqXHR);
+				
+				alert("삭제가 완료되었습니다.");
+				location.href = "${ctxpath}/customer/customer.do";
+					
+			}).fail(function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR);
+				console.log(errorThrown);
+				console.log(textStatus);
+			});
 		}else{
 			return false;
 		}
-		
-		$.ajax({
-			url:"${ctxpath}/deletect.do",
-			type:"POST",
-			data:json
-		}).done(function(data, textStatus, jqXHR){	
-			console.log(data);
-			console.log(textStatus);
-			console.log(jqXHR);
-			
-			alert("삭제가 완료되었습니다.");
-			location.href = "/teamb/customer.do";
-				
-		}).fail(function(jqXHR, textStatus, errorThrown){
-			console.log(jqXHR);
-			console.log(errorThrown);
-			console.log(textStatus);
-		});
+	
 	}
 	
 	function addreply() {
@@ -54,7 +55,7 @@
 			};
 		
 		$.ajax({
-			url:"${ctxpath}/addreply.do",
+			url:"${ctxpath}/reply/addreply.do",
 			type:"POST",
 			data:dto,
 			header:{"Content-Type":"application/json"},
@@ -117,7 +118,7 @@
 			};
 		
 		$.ajax({
-			url:"${ctxpath}/updaterp.do",
+			url:"${ctxpath}/reply/updaterp.do",
 			type:"POST",
 			data:json,
 			header:{"Content-Type":"application/json"},
@@ -180,7 +181,7 @@
 		}
 
 		$.ajax({
-			url:"${ctxpath}/deleterp.do",
+			url:"${ctxpath}/reply/deleterp.do",
 			type:"POST",
 			data:json,
 			header:{"Content-Type":"application/json"},
@@ -243,12 +244,15 @@
 		</tr>
 	</tbody>
 </table>
+<c:if test="${sessionScope.grade eq 1}">
 <div align="right" style="margin-bottom: 3rem;">
 	<input type="hidden" value="${list.id}" id="deleteid">
-	<button class="btn btn-outline-success" onclick="location.href='${ctxpath}/updatect.do/${list.id}'">수정</button>
+	<button class="btn btn-outline-success" onclick="location.href='${ctxpath}/customer/updatect.do/${list.id}'">수정</button>
 	<button class="btn btn-outline-danger" onclick="deleteconfirm();">삭제</button>
 </div>
+</c:if>
 <div id="list">
+<label for="content" class="form-label">댓글</label>
 <c:if test="${!empty rlist}">
 <c:forEach var="view" items="${rlist}">
 <div class="card p-3" style="margin-bottom: 1rem;">
@@ -258,8 +262,10 @@
 			<span>
 				<small class="font-weight-bold text-primary">${view.writer}</small> 
 				<small class="font-weight-bold" id="${view.rid}">${view.content}</small>
+				<c:if test="${view.writer eq sessionScope.id}">
 				<input type="button" id="sj" class="btn btn-sm btn-outline-success" value="수정" onclick="updatereply(this);">
 				<input type="button" id="sz" class="btn btn-sm btn-outline-danger" value="삭제" onclick="deletereply(${view.rid}, ${list.id})">
+				</c:if>
             </span>
 		</div>
 		<small>
@@ -271,16 +277,17 @@
 </c:if>
 </div>
 <div class="mb-3">
-  				<label for="content" class="form-label">댓글</label>
-  				<!--
+  				<%-- <label for="content" class="form-label">댓글</label>--%>
+  				
   				<c:if test="${empty sessionScope.id}">
-  				<textarea class="form-control" id="content" rows="3" placeholder="로그인후 댓글 작성이 가능합니다."></textarea>
+  					<textarea class="form-control" id="content" rows="3" placeholder="로그인후 댓글 작성이 가능합니다."></textarea>
   				</c:if>
-  				-->
+  				<c:if test="${list.writer eq sessionScope.id || sessionScope.grade eq 1}">
   				<textarea class="form-control" id="content" rows="3" placeholder="내용을 입력해 주세요."></textarea>
   				<br>
   				<input type="hidden" id="writer" value="${list.writer}">
   				<input type="hidden" id="cid" value="${list.id}">
-  				<input type="button" value="댓글 등록" style="float: right; margin-bottom: 1rem;" class="btn btn-outline-primary" onclick="addreply();">  				
+  				<input type="button" value="댓글 등록" style="float: right; margin-bottom: 1rem;" class="btn btn-outline-primary" onclick="addreply();">
+  				</c:if>  				
 			</div>
 </body>

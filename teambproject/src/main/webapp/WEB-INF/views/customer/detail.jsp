@@ -66,23 +66,36 @@
 			console.log(jqXHR);
 			
 			var listStr = "";
-		         
+		    
 		    for(var i = 0; i<data.length; i++){
-		         
-		            listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
-                				"<div class='d-flex justify-content-between align-items-center'>"+
-                    			"<div class='user d-flex flex-row align-items-center'>"+ 
-                    			"<img src='${ctxpath}/resources/img/user1.png' width='30' class='user-img rounded-circle mr-2'>"+
-                    			"<span>"+
-            					"<small class='font-weight-bold text-primary'>"+data[i].writer+"</small>"+ 
-                    			"<small class='font-weight-bold'>"+data[i].content+"</small>"+
-                    			"<input type='button' id='sj' class='btn btn-sm btn-outline-success' value='수정' onclick='updatereply(this);'>"+
-                				"<input type='button' id='sz' class='btn btn-sm btn-outline-danger' value='삭제' onclick='deletereply("+data[i].rid+", ${list.id})'>"+
-                    			"</span></div>"+ 
-                				"<small>"+data[i].regdate+"</small></div></div>";
-		     }
-		     
-		    $('#list').html(listStr).trigger("create");
+		    	if($("#writer").val() == data[i].writer){
+		    		listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
+    				"<div class='d-flex justify-content-between align-items-center'>"+
+        			"<div class='user d-flex flex-row align-items-center'>"+ 
+        			"<img src='${ctxpath}/resources/img/user1.png' width='30' class='user-img rounded-circle mr-2'>"+
+        			"<span>"+
+					"<small class='font-weight-bold text-primary'>"+data[i].writer+"</small>"+ 
+        			"<small class='font-weight-bold'>"+data[i].content+"</small>"+
+        			"<input type='button' id='sj' class='btn btn-sm btn-outline-success' value='수정' onclick='updatereply(this);'>"+
+    				"<input type='button' id='sz' class='btn btn-sm btn-outline-danger' value='삭제' onclick='deletereply("+data[i].rid+", ${list.id})'>"+
+        			"</span></div>"+ 
+    				"<small>"+data[i].regdate+"</small></div></div>";
+    				
+		    		$('#list').html(listStr).trigger("create");
+ 				}else{
+ 					listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
+    				"<div class='d-flex justify-content-between align-items-center'>"+
+        			"<div class='user d-flex flex-row align-items-center'>"+ 
+        			"<img src='${ctxpath}/resources/img/user1.png' width='30' class='user-img rounded-circle mr-2'>"+
+        			"<span>"+
+					"<small class='font-weight-bold text-primary'>"+data[i].writer+"</small>"+ 
+        			"<small class='font-weight-bold'>"+data[i].content+"</small>"+
+        			"</span></div>"+ 
+    				"<small>"+data[i].regdate+"</small></div></div>";
+    				
+ 					$('#list').html(listStr).trigger("create");
+ 					}
+			    }
 
 			
 				
@@ -133,7 +146,7 @@
 			var listStr = "";
 	         
 		    for(var i = 0; i<data.length; i++){
-		         
+		    	if($("#writer").val() == data[i].writer){ 
 		            listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
                 				"<div class='d-flex justify-content-between align-items-center'>"+
                     			"<div class='user d-flex flex-row align-items-center'>"+ 
@@ -145,9 +158,24 @@
                 				"<input type='button' id='sz' class='btn btn-sm btn-outline-danger' value='삭제' onclick='deletereply("+data[i].rid+", ${list.id})'>"+
                     			"</span></div>"+ 
                 				"<small>"+data[i].regdate+"</small></div></div>";
+		            
+                				$('#list').html(listStr).trigger("create");
+		     	}else{
+		     		listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
+    				"<div class='d-flex justify-content-between align-items-center'>"+
+        			"<div class='user d-flex flex-row align-items-center'>"+ 
+        			"<img src='${ctxpath}/resources/img/user1.png' width='30' class='user-img rounded-circle mr-2'>"+
+        			"<span>"+
+					"<small class='font-weight-bold text-primary'>"+data[i].writer+"</small>"+ 
+        			"<small class='font-weight-bold'>"+data[i].content+"</small>"+
+        			"</span></div>"+ 
+    				"<small>"+data[i].regdate+"</small></div></div>";
+		     		
+		     		$('#list').html(listStr).trigger("create");
+		     		
+		    	 	}
 		     }
 		     
-		    $('#list').html(listStr).trigger("create");
 				
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(jqXHR);
@@ -196,7 +224,7 @@
 			var listStr = "";
 	         
 		    for(var i = 0; i<data.length; i++){
-		         
+		    	if($("#writer").val() == data[i].writer){
 		            listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
                 				"<div class='d-flex justify-content-between align-items-center'>"+
                     			"<div class='user d-flex flex-row align-items-center'>"+ 
@@ -208,9 +236,25 @@
                 				"<input type='button' id='sz' class='btn btn-sm btn-outline-danger' value='삭제' onclick='deletereply("+data[i].rid+", ${list.id})'>"+
                     			"</span></div>"+ 
                 				"<small>"+data[i].regdate+"</small></div></div>";
+                				
+		          				$('#list').html(listStr).trigger("create");
+		     	}else{
+		    	 	listStr +=	"<div class='card p-3' style='margin-bottom: 1rem;'>"+
+ 								"<div class='d-flex justify-content-between align-items-center'>"+
+     							"<div class='user d-flex flex-row align-items-center'>"+ 
+     							"<img src='${ctxpath}/resources/img/user1.png' width='30' class='user-img rounded-circle mr-2'>"+
+     							"<span>"+
+								"<small class='font-weight-bold text-primary'>"+data[i].writer+"</small>"+ 
+     							"<small class='font-weight-bold'>"+data[i].content+"</small>"+
+     							"</span></div>"+ 
+ 								"<small>"+data[i].regdate+"</small></div></div>";
+ 							
+		    	 				$('#list').html(listStr).trigger("create");
+		     
+		     	}
 		     }
 		     
-		    $('#list').html(listStr).trigger("create");
+		    
 				
 		}).fail(function(jqXHR, textStatus, errorThrown){
 			console.log(jqXHR);
@@ -285,7 +329,7 @@
   				<c:if test="${list.writer eq sessionScope.id || sessionScope.grade eq 1}">
   				<textarea class="form-control" id="content" rows="3" placeholder="내용을 입력해 주세요."></textarea>
   				<br>
-  				<input type="hidden" id="writer" value="${list.writer}">
+  				<input type="hidden" id="writer" value="${sessionScope.id}">
   				<input type="hidden" id="cid" value="${list.id}">
   				<input type="button" value="댓글 등록" style="float: right; margin-bottom: 1rem;" class="btn btn-outline-primary" onclick="addreply();">
   				</c:if>  				

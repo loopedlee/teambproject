@@ -89,94 +89,79 @@ function deleteuser(){
   }
   </script>
   
-  <style type="text/css">
-  h2{
-  text-align: center;
+<style type="text/css">
+h2{
+  	text-align: center;
   }
-  table{
-  margin: auto;
-  border: 1px solid black;
-  }
-  .line{
-  border:1px solid white;
-  }
-  
-  </style>
+</style>
   
 </head>
 <body>
 <h2><b>정보 수정하기</b></h2>
-  <form name="updateForm" method="post" action="${ctxpath}/user/updatepro.do" onsubmit="return check()">
-    <table>
-      <tr>
-        <td>이름</td>
-        <td>
-        <input type="text" name="name" id="name" value="${sessionScope.name}">
+<div class="container">
+	<div class="row">
+		<div class="col">
+  <form name="updateForm" method="post" action="${ctxpath}/user/updatepro.do" onsubmit="return check()" style="width: 40%; margin: auto;">
+    <div class="input-group flex-nowrap">
+  		<span class="input-group-text" id="addon-wrapping">이름</span>
+        <input type="text" name="name" id="name" value="${sessionScope.name}" aria-label="Username" aria-describedby="addon-wrapping" class="form-control">
         <input type="hidden" name="id" value="${sessionScope.id}">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>암호</td>
-        <td><input type="password" name="pw" id="pw" size="20"></td>
-      </tr>
-      
-      <tr>
-        <td>암호확인</td>
-        <td><input type="password" name="pw2" id="pw2" size="20"></td>
-      </tr>
-      
-      <tr>
-        <td>이메일</td>
-        <td>
-          <input type="text" name="email" id="email" value="${sessionScope.email}">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>전화</td>
-        <td>
-        	<c:set var="usertel" value="${sessionScope.tel}"/>
-        	
-        	<input type="text" name="tel1" id="tel1" value="${fn:substring(usertel,0,3)}" size="4">-
-        	<c:if test="${fn:length(usertel) eq 11}">
-        	<input type="text" name="tel2" id="tel2" value="${fn:substring(usertel,3,7)}" size="4">-
-        	<input type="text" name="tel3" id="tel3" value="${fn:substring(usertel,7,11)}" size="4">
-        	</c:if>
-        	<c:if test="${fn:length(usertel) eq 10}">
-        	<input type="text" name="tel2" id="tel2" value="${fn:substring(usertel,3,6)}" size="4">-
-        	<input type="text" name="tel3" id="tel3" value="${fn:substring(usertel,6,10)}" size="4">
-        	</c:if>
+    </div>
+    <br>
+	<div class="input-group flex-nowrap">
+  		<span class="input-group-text" id="addon-wrapping">암호</span>  
+      	<input type="password" name="pw" id="pw" aria-label="Username" aria-describedby="addon-wrapping" class="form-control">
+    </div>
+    <br>
+    <div class="input-group flex-nowrap">
+  		<span class="input-group-text" id="addon-wrapping">암호확인</span>  
+  		<input type="password" name="pw2" id="pw2" aria-label="Username" aria-describedby="addon-wrapping" class="form-control">
+    </div>
+    <br>
+    <div class="input-group flex-nowrap">
+    	<span class="input-group-text" id="addon-wrapping">이메일</span>  
+        <input type="email" name="email" id="email" value="${sessionScope.email}" aria-label="Username" aria-describedby="addon-wrapping" class="form-control">
+  	</div>
+    <br>
+    <div class="input-group flex-nowrap">
+  		<span class="input-group-text" id="addon-wrapping">전화</span>  
+      	<c:set var="usertel" value="${sessionScope.tel}"/>        	
+        	<input type="text" name="tel1" id="tel1" value="${fn:substring(usertel,0,3)}" size="4" class="form-control">-
+        <c:if test="${fn:length(usertel) eq 11}">
+        	<input type="text" name="tel2" id="tel2" value="${fn:substring(usertel,3,7)}" size="4" class="form-control">-
+        	<input type="text" name="tel3" id="tel3" value="${fn:substring(usertel,7,11)}" size="4" class="form-control">
+        </c:if>
+        <c:if test="${fn:length(usertel) eq 10}">
+        	<input type="text" name="tel2" id="tel2" value="${fn:substring(usertel,3,6)}" size="4" class="form-control">-
+        	<input type="text" name="tel3" id="tel3" value="${fn:substring(usertel,6,10)}" size="4" class="form-control">
+        </c:if>
         	<input type="hidden" name="tel" id="tel" value="">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>우편번호</td>
-        <td>
-          <input type="text" name="zipcode" id="zipcode" value="${sessionScope.zipcode}" readonly>
-          <input type="button" value="주소찾기" onclick="openDaumPostcode()">
-        </td>
-      </tr>
-      
-      <tr>
-        <td>주소</td>
-        <td><input type="text" name="address" id="address" value="${sessionScope.address}" size="50"></td>
-      </tr>
-      <br>
-      <table class="line">
-      <tr>
-        <td colspan="2" align="center">
-          <input type="submit" value="수정완료">
-          <input type="button" value="수정 안함" onClick="history.back(); return false ;">
-        </td>
-        
-        <td>
-        <input type="button" value="탈퇴하기" onclick="deleteuser();">
-        </td>
-      </tr>
-      </table>
-    </table>
+     </div>
+     <br>
+     <div class="input-group flex-nowrap">
+  	 	<span class="input-group-text" id="addon-wrapping">우편번호</span>
+  		<input type="text" class="form-control" placeholder="우편번호를 입력해주세요" aria-label="Username" aria-describedby="addon-wrapping" name="zipcode" id="zipcode" readOnly="readonly" value="${sessionScope.zipcode}">
+  		<button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick="openDaumPostcode()">주소 찾기</button>
+	</div>
+	<br>
+	<div class="input-group flex-nowrap">
+  		<span class="input-group-text" id="addon-wrapping">주소</span>
+  		<input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" name="address" id="address" value="${sessionScope.address}">
+	</div>
+	<br>
+    <div class="input-group flex-nowrap">
+  		<span class="input-group-text" id="addon-wrapping">상세주소</span>
+  		<input type="text" class="form-control" placeholder="상세주소를 입력해주세요" aria-label="Username" aria-describedby="addon-wrapping" name="address2" id="address2">
+	</div>
+	<br>
+	<div style="text-align: center;">
+    	<button type="submit" class="btn btn-outline-success" style="width: 7rem;">수정 하기</button>
+    	<input type="button" class="btn btn-outline-warning" value="수정 취소" onClick="history.back(); return false ;">
+    	<input type="button" class="btn btn-outline-danger" value="탈퇴 하기" onclick="deleteuser();">
+    </div>
   </form>
+  </div>
+  </div>
+  </div>
 </body>
 </html>

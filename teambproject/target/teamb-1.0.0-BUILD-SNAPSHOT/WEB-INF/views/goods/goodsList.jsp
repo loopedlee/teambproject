@@ -6,10 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+ .aoption:link { color: black; text-decoration: none;}
+ .aoption:visited { color: black; text-decoration: none;}
+ .aoption:hover { color: blue; text-decoration: underline;}
+</style>
 </head>
 <body>
+<c:if test="${sessionScope.grade eq 1}">
 <a href="${ctxpath}/goods/writeForm.do">글쓰기</a>
-
+</c:if>
   <form name="searchForm" method="get" action="${ctxpath}/goods/goodsList.do">
     <table style="margin-left: 875px;">
       <tr>
@@ -29,7 +35,32 @@
   </form>
   
   <h2>상품 목록 표 [등록된 상품 수 : ${count}]</h2>
-  <table>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <c:forEach var="goodsDto" items="${list}" varStatus="status">
+  <div class="col">
+  <div class="card">
+  <a href="${ctxpath}/goods/content.do?id=${goodsDto.id}">
+  <%-- <a href="${ctxpath}/goods/content.do?id=${goodsDto.id}&pageNum=${currentPage}">--%>
+  <img src="${ctxpath}/resources/flowerimgs/${goodsDto.img}" class="card-img-top" alt="..." style="max-height: 420px;">
+  </a>
+  <div class="card-body">
+    <p class="card-text"><c:choose>
+                <c:when test="${goodsDto.type==1}">[꽃다발]</c:when>
+                <c:when test="${goodsDto.type==2}">[꽃바구니]</c:when>
+                <c:when test="${goodsDto.type==3}">[축하화환]</c:when>
+                <c:when test="${goodsDto.type==4}">[근조화환]</c:when>
+                <c:otherwise>
+                  undefined
+                </c:otherwise>
+              </c:choose></p>
+              <p><a class="aoption" href="${ctxpath}/goods/content.do?id=${goodsDto.id}">${goodsDto.name}</a></p>
+              <%--<p><a class="aoption" href="${ctxpath}/goods/content.do?id=${goodsDto.id}&pageNum=${currentPage}">${goodsDto.name}</a></p> --%>
+  </div>
+</div>
+</div>
+</c:forEach>
+</div>
+  <%--  <table>
   <c:forEach var="goodsDto" items="${list}" varStatus="status">
     <c:if test="${status.index%4==0}">
       <tr>
@@ -110,7 +141,7 @@
           </table>
        </c:forEach>
     </table>
-
+-->
   <%--블럭 페이지 처리 --%>
   <table style="margin:auto;">
     <tr>

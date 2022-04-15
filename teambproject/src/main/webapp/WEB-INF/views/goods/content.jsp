@@ -249,7 +249,9 @@ function check() {
     		</select>
     	 </div>
     	 <div style="margin-bottom: 20px;">추천수 : ${goodsDto.rate}</div>
-    	 <button type="button" class="btn btn-outline-success" onClick="rateUp()">게시물 추천!</button>
+    	 <c:if test="${goodsDto.stock > 0 and sessionScope.id ne null}">
+    	   <button type="button" class="btn btn-outline-success" onClick="rateUp()">게시물 추천!</button>
+    	 </c:if>
     	</div>
 	</div>
 </div>

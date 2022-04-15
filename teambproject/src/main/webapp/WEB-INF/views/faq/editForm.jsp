@@ -21,7 +21,7 @@ background-color: ivory;
 <body>
 <h2>글수정 폼</h2>
 <form method="post" action="${ctxpath }/faq/editPro.do">
-  <table border="1">
+  <table border="1" class="table table-hover">
     <tr>
       <td>이름</td>
       <td>

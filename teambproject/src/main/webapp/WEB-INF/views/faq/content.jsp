@@ -22,18 +22,20 @@ width: 60%;
 </head>
 <body>
 <h2>FAQ 내용보기</h2>
-<table>
+<table class="table table-hover">
   <tr>
     <td align="right">
+    <c:if test="${sessionScope.grade eq 1}">
        <a href="${ctxpath}/faq/editForm.do?num=${FaqDto.id}">글수정</a>&nbsp;
        <a href="${ctxpath}/faq/delete.do?num=${FaqDto.id}">글삭제</a>&nbsp;
        <a href="${ctxpath}/faq/insertForm.do">새글쓰기</a>&nbsp;
+    </c:if>
        <a href="${ctxpath}/faq/list.do?num=${FaqDto.id}">리스트</a>&nbsp;
     </td>
   </tr>
 </table>
 
-<table border="1">
+<table border="1" class="table table-hover">
   <tr>
     <td>글번호</td>
     <td>${FaqDto.id}</td>

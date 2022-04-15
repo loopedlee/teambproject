@@ -26,7 +26,7 @@
 				"id" : 0,
 				"subject" : $("#sj").val(),
 				"content" : $("#ta").val(),
-				"writer" : "관리자"
+				"writer" : $("#uid").val()
 			};
 			
 			$.ajax({
@@ -60,6 +60,7 @@
 </div>
 <div style="text-align: center; margin-top: 1rem;">
 <input type="button" class="btn btn-outline-success" value="등록" onclick="insertct();">
+<input type="hidden" id="uid" value="${sessionScope.id}">
 <input type="reset" class="btn btn-outline-danger" value="취소" onclick="history.back()">
 </div>
 </div>

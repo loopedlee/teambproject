@@ -22,25 +22,17 @@ border: 1px solid black;
 </head>
 <body>
 <h2>FAQ</h2>
-
-  <table border="1" width="80%" align="center">
-      
-    <tr>
-      <td colspan="5" align="center">
-        <font size="5">FAQ</font>
-	  </td>
-    </tr>
-    </table>
-   
-    <table border="0">
+   <c:if test="${sessionScope.grade eq 1}">
+    <table border="0" class="table table-hover">
       <tr>
-        <td>
+        <td align="right" colspan="4">
           <a href="${ctxpath}/faq/insertForm.do">새글쓰기</a>
         </td>
       </tr>
     </table>
+    </c:if>
     
-    <table border="1" width="80%" align="center">
+    <table border="1" width="80%" class="table table-hover">
     
     <tr align="center">
       <td>글쓴이</td>

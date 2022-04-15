@@ -55,7 +55,7 @@ margin: auto;
 <body>
   <h2>게시판 글쓰기</h2> 
     <form name="myForm" method="post" action="${ctxpath}/faq/insertPro.do" onsubmit="return check(this)">
-	  <table>
+	  <table class="table table-hover">
 	   
 	    
 	    <tr>

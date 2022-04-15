@@ -29,9 +29,9 @@
     <table class="line">
       <tr>
         <td align="right">
-          <%-- <c:if test="${adminID != null}"> --%>
+          <c:if test="${sessionScope.grade eq 1}">
             <a href="${ctxpath}/notice/insertForm.do">글쓰기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-          <%-- </c:if> --%>
+          </c:if>
         </td>
       </tr>
     </table>
